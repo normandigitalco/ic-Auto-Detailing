@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IC Auto Detailing | Mobile Detailing Texas</title>
+  <link rel="icon" type="image/jpeg" href="IMG_6632.jpg" />
+  <link rel="apple-touch-icon" href="IMG_6632.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:   #2563b0;
+      --blue2:  #3b7fd4;
+      --blue3:  #1a4a8a;
+      --dark:   #0a0a0f;
+      --dark2:  #10101a;
+      --dark3:  #18182a;
+      --dark4:  #202033;
+      --border: 1px solid rgba(255,255,255,0.07);
+      --nav-h:  108px;
+      --raj:    'Rajdhani', sans-serif;
+      --cond:   'Barlow Condensed', sans-serif;
+      --oswald: 'Oswald', sans-serif;
+      --body:   'Barlow', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--dark); color: #e2e4eb; font-family: var(--body); font-weight: 300; line-height: 1.6; overflow-x: hidden; }
+    ::selection { background: var(--blue); color: #fff; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #000; }
+    ::-webkit-scrollbar-thumb { background: var(--blue); }
+
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ════════ NAV ════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 60px; height: var(--nav-h);
+      background: #000; border-bottom: var(--border);
+    }
+    .nav-logo { cursor: pointer; display: flex; align-items: center; margin-left: -12px; height: 100%; }
+    .nav-logo img { height: 90px; width: 90px; object-fit: contain; object-position: center; border-radius: 0; }
+
+    .nav-center {
+      display: flex; gap: 40px; list-style: none;
+      position: absolute; left: 50%; transform: translateX(-50%);
+    }
+    .nav-center li a {
+      font-family: var(--cond); font-weight: 600; font-size: 14px;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: #aab; text-decoration: none; cursor: pointer;
+      position: relative; padding-bottom: 4px; transition: color 0.2s;
+    }
+    .nav-center li a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--blue); transition: width 0.25s; }
+    .nav-center li a:hover, .nav-center li a.active-lnk { color: #fff; }
+    .nav-center li a:hover::after, .nav-center li a.active-lnk::after { width: 100%; }
+
+    .nav-contact { background: var(--blue); color: #fff; font-family: var(--cond); font-weight: 700; font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase; text-decoration: none; padding: 13px 28px; transition: background 0.2s; white-space: nowrap; }
+    .nav-contact:hover { background: var(--blue2); }
+
+    .ham { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .ham span { display: block; width: 26px; height: 2px; background: #aab; transition: all 0.3s; }
+    .ham.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .ham.open span:nth-child(2) { opacity: 0; }
+    .ham.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+    .mob-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 999; background: #000; flex-direction: column; padding: 24px 28px 32px; gap: 18px; border-bottom: var(--border); box-shadow: 0 8px 40px rgba(0,0,0,0.7); }
+    .mob-menu.open { display: flex; }
+    .mob-menu a { font-family: var(--cond); font-weight: 600; font-size: 17px; letter-spacing: 3px; text-transform: uppercase; color: #aab; text-decoration: none; cursor: pointer; transition: color 0.2s; padding: 4px 0; }
+    .mob-menu a:hover { color: var(--blue); }
+    .mob-cta-row { display: flex; flex-direction: column; gap: 10px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.07); margin-top: 4px; }
+    .mob-cta-call { display: block; background: var(--blue); color: #fff; text-align: center; padding: 14px 24px; font-family: var(--cond); font-weight: 700; font-size: 14px; letter-spacing: 2.5px; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+    .mob-cta-call:hover { background: var(--blue2); color: #fff; }
+
+    /* ════════ SHARED ════════ */
+    .section-tag { font-family: var(--cond); font-size: 12px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
+    .section-tag::before { content: ''; display: block; width: 28px; height: 1px; background: var(--blue); }
+
+    .page-hero { position: relative; height: 380px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #000; }
+    .page-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 50%; filter: brightness(0.3); }
+    .page-hero h1 { position: relative; z-index: 2; font-family: var(--raj); font-weight: 700; font-size: clamp(36px, 6vw, 72px); letter-spacing: 6px; text-transform: uppercase; color: #fff; text-align: center; }
+    .page-hero h1 span { color: var(--blue); }
+
+    .btn-blue { display: inline-block; background: var(--blue); color: #fff; font-family: var(--cond); font-weight: 700; font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase; text-decoration: none; padding: 14px 32px; cursor: pointer; border: none; transition: background 0.2s; }
+    .btn-blue:hover { background: var(--blue2); }
+    .btn-outline-blue { display: inline-block; background: transparent; color: var(--blue); font-family: var(--cond); font-weight: 700; font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase; text-decoration: none; padding: 13px 32px; cursor: pointer; border: 1px solid var(--blue); transition: background 0.2s, color 0.2s; }
+    .btn-outline-blue:hover { background: var(--blue); color: #fff; }
+    .btn-white { background: #fff; color: var(--blue); font-family: var(--cond); font-weight: 700; font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase; text-decoration: none; padding: 16px 36px; transition: background 0.2s; white-space: nowrap; cursor: pointer; border: none; }
+    .btn-white:hover { background: #e8eef8; }
+
+    .si-big { display: flex; align-items: center; gap: 14px; padding: 14px 24px; border: 1px solid rgba(255,255,255,0.1); text-decoration: none; color: #aab; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .si-big:hover { border-color: var(--blue); color: #fff; background: rgba(37,99,176,0.1); }
+    .si-big svg { width: 20px; height: 20px; fill: currentColor; flex-shrink: 0; }
+    .si-big span { font-family: var(--cond); font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+
+    /* ════════ HOME ════════ */
+    #home { padding-top: var(--nav-h); }
+
+    .slider { position: relative; width: 100%; height: calc(100vh - var(--nav-h)); overflow: hidden; background: #000; min-height: 480px; }
+    .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease; display: flex; align-items: center; justify-content: center; }
+    .slide.active { opacity: 1; }
+    .slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.35); }
+    .slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,10,20,0.6) 0%, transparent 60%); z-index: 1; pointer-events: none; }
+    .slide-content { position: relative; z-index: 2; text-align: center; padding: 0 40px; }
+    .slide-content h1 { font-family: var(--raj); font-weight: 700; font-size: clamp(38px, 7vw, 96px); line-height: 1.0; letter-spacing: 3px; text-transform: uppercase; color: #fff; text-shadow: 0 2px 40px rgba(0,0,0,0.8); margin-bottom: 18px; }
+    .slide-content h1 span { color: var(--blue); }
+    .slide-content p { font-family: var(--cond); font-weight: 600; font-size: clamp(13px, 1.8vw, 18px); letter-spacing: 5px; text-transform: uppercase; color: rgba(255,255,255,0.65); }
+    .sl-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.12); color: #fff; font-size: 24px; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s, border-color 0.2s; }
+    .sl-arrow:hover { background: var(--blue); border-color: var(--blue); }
+    .sl-prev { left: 24px; } .sl-next { right: 24px; }
+    .sl-dots { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; }
+    .sl-dot { width: 36px; height: 3px; background: rgba(255,255,255,0.2); cursor: pointer; transition: background 0.3s; }
+    .sl-dot.active { background: var(--blue); }
+
+    /* Mobile badge on hero */
+    .mobile-badge { position: absolute; bottom: 60px; right: 60px; z-index: 10; background: var(--blue); padding: 14px 24px; text-align: center; }
+    .mobile-badge div:first-child { font-family: var(--oswald); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 4px; }
+    .mobile-badge div:last-child { font-family: var(--oswald); font-size: 20px; font-weight: 700; letter-spacing: 2px; color: #fff; }
+
+    /* Intro split */
+    .home-split { display: grid; grid-template-columns: 1fr 1fr; border-bottom: var(--border); min-height: 480px; }
+    .home-split-img { position: relative; overflow: hidden; }
+    .home-split-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.55) saturate(0.8); transition: transform 8s; }
+    .home-split-img:hover img { transform: scale(1.04); }
+    .home-split-text { background: var(--dark2); padding: 80px 64px; display: flex; flex-direction: column; justify-content: center; border-left: var(--border); }
+    .home-split-text h2 { font-family: var(--raj); font-weight: 700; font-size: clamp(28px, 3.5vw, 48px); text-transform: uppercase; letter-spacing: 2px; color: #fff; line-height: 1.1; margin-bottom: 24px; }
+    .home-split-text h2 span { color: var(--blue); }
+    .home-split-text p { font-size: 15px; color: #888; line-height: 1.9; margin-bottom: 14px; }
+    .home-phone { display: inline-flex; align-items: center; gap: 10px; margin-top: 6px; font-family: var(--oswald); font-size: 24px; font-weight: 600; color: var(--blue); text-decoration: none; letter-spacing: 1px; transition: color 0.2s; }
+    .home-phone:hover { color: var(--blue2); }
+    .home-phone svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; }
+
+    /* Stats */
+    .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); background: #000; border-top: var(--border); border-bottom: var(--border); }
+    .stat-item { padding: 40px 32px; text-align: center; border-right: var(--border); transition: background 0.3s; }
+    .stat-item:last-child { border-right: none; }
+    .stat-item:hover { background: var(--dark3); }
+    .stat-num { font-family: var(--raj); font-size: 48px; font-weight: 700; color: var(--blue); line-height: 1; margin-bottom: 8px; }
+    .stat-label { font-family: var(--cond); font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #444; }
+
+    /* Service preview */
+    .svc-preview { background: var(--dark2); border-bottom: var(--border); }
+    .svc-preview-head { padding: 60px 60px 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+    .svc-preview-head h2 { font-family: var(--raj); font-weight: 700; font-size: clamp(28px, 4vw, 48px); text-transform: uppercase; letter-spacing: 2px; color: #fff; }
+    .svc-preview-head h2 span { color: var(--blue); }
+    .svc-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 40px 60px 60px; }
+    .svc-tile { position: relative; overflow: hidden; height: 280px; cursor: pointer; border: 1px solid rgba(255,255,255,0.06); transition: border-color 0.3s; background: var(--dark3); }
+    .svc-tile:hover { border-color: rgba(37,99,176,0.5); }
+    .svc-tile img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.45) saturate(0.8); transition: transform 5s ease, filter 0.4s; display: block; }
+    .svc-tile:hover img { transform: scale(1.05); filter: brightness(0.55) saturate(1); }
+    .svc-tile-content { position: absolute; inset: 0; padding: 28px; display: flex; flex-direction: column; justify-content: flex-end; background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 60%); z-index: 2; }
+    .svc-tile-name { font-family: var(--raj); font-size: 20px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #fff; margin-bottom: 4px; }
+    .svc-tile-sub { font-family: var(--cond); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+    .svc-tile-arrow { position: absolute; top: 16px; right: 16px; width: 34px; height: 34px; background: var(--blue); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 16px; opacity: 0; transform: translateY(-6px); transition: opacity 0.3s, transform 0.3s; z-index: 3; }
+    .svc-tile:hover .svc-tile-arrow { opacity: 1; transform: translateY(0); }
+
+    /* ════════ BEFORE/AFTER SECTION ════════ */
+    .before-after {
+      background: var(--dark3); border-top: var(--border); border-bottom: var(--border);
+      padding: 80px 60px;
+    }
+    .ba-head { text-align: center; margin-bottom: 52px; }
+    .ba-head h2 { font-family: var(--raj); font-weight: 700; font-size: clamp(28px, 4vw, 52px); text-transform: uppercase; letter-spacing: 2px; color: #fff; }
+    .ba-head h2 span { color: var(--blue); }
+    .ba-head p { font-family: var(--cond); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-top: 10px; }
+
+    .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+    .ba-pair {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
+      position: relative;
+    }
+    .ba-img { position: relative; overflow: hidden; height: 340px; }
+    .ba-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; filter: saturate(0.8); transition: filter 0.4s; }
+    .ba-img:hover img { filter: saturate(1); }
+    .ba-tag {
+      position: absolute; top: 16px; left: 16px; z-index: 2;
+      font-family: var(--oswald); font-size: 12px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
+      padding: 6px 14px;
+    }
+    .ba-tag.before { background: rgba(0,0,0,0.75); color: #aaa; border: 1px solid rgba(255,255,255,0.15); }
+    .ba-tag.after  { background: var(--blue); color: #fff; }
+    .ba-divider {
+      position: absolute; top: 0; bottom: 0; left: 50%; z-index: 5;
+      width: 3px; background: var(--blue); transform: translateX(-50%);
+    }
+    .ba-divider::after {
+      content: 'VS'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: var(--blue); color: #fff;
+      font-family: var(--oswald); font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      padding: 6px 8px; white-space: nowrap;
+    }
+
+    /* Why us */
+    .why-section { display: grid; grid-template-columns: 1fr 1fr; border-top: var(--border); border-bottom: var(--border); }
+    .why-img { position: relative; overflow: hidden; min-height: 500px; background: var(--dark3); }
+    .why-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.5) saturate(0.8); }
+    .why-text { background: var(--dark3); padding: 80px 64px; border-left: var(--border); }
+    .why-text h2 { font-family: var(--raj); font-weight: 700; font-size: clamp(26px, 3.5vw, 44px); text-transform: uppercase; letter-spacing: 2px; color: #fff; line-height: 1.1; margin-bottom: 36px; }
+    .why-text h2 span { color: var(--blue); }
+    .why-item { display: flex; gap: 18px; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .why-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .why-icon { width: 48px; height: 48px; background: rgba(37,99,176,0.1); border: 1px solid rgba(37,99,176,0.25); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--blue); }
+    .why-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+    .why-item-title { font-family: var(--raj); font-size: 17px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #fff; margin-bottom: 4px; }
+    .why-item-desc { font-size: 14px; color: #666; line-height: 1.7; }
+
+    /* Social */
+    .social-section { background: #000; padding: 64px 60px; display: flex; align-items: center; justify-content: space-between; gap: 40px; border-bottom: var(--border); flex-wrap: wrap; }
+    .social-section-text h3 { font-family: var(--raj); font-size: clamp(24px, 3vw, 40px); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-bottom: 8px; }
+    .social-section-text h3 span { color: var(--blue); }
+    .social-section-text p { font-family: var(--cond); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #444; }
+    .social-big { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    /* CTA */
+    .cta-band { background: var(--blue); padding: 72px 60px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; position: relative; overflow: hidden; }
+    .cta-band::before { content: 'IC AUTO'; position: absolute; right: -20px; top: 50%; transform: translateY(-50%); font-family: var(--raj); font-size: 160px; font-weight: 700; color: rgba(255,255,255,0.05); pointer-events: none; white-space: nowrap; }
+    .cta-band h2 { font-family: var(--raj); font-weight: 700; font-size: clamp(26px, 4vw, 52px); line-height: 1.05; color: #fff; text-transform: uppercase; letter-spacing: 2px; }
+    .cta-band p { font-family: var(--cond); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-top: 8px; }
+
+    /* ════════ ABOUT ════════ */
+    #about { padding-top: var(--nav-h); }
+    .about-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; border-bottom: var(--border); }
+    .about-hero-img { position: relative; overflow: hidden; background: var(--dark3); }
+    .about-hero-img img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55) saturate(0.8); }
+    .about-hero-text { background: var(--dark2); padding: 80px 64px; display: flex; flex-direction: column; justify-content: center; border-left: var(--border); }
+    .about-hero-text h1 { font-family: var(--raj); font-weight: 700; font-size: clamp(32px, 5vw, 64px); text-transform: uppercase; letter-spacing: 3px; color: #fff; line-height: 0.95; margin-bottom: 28px; }
+    .about-hero-text h1 span { color: var(--blue); display: block; }
+    .about-hero-text p { font-size: 15px; color: #888; line-height: 1.9; margin-bottom: 14px; }
+
+    .about-values { display: grid; grid-template-columns: repeat(4, 1fr); border-top: var(--border); border-bottom: var(--border); }
+    .av-item { padding: 48px 32px; border-right: var(--border); text-align: center; transition: background 0.3s; }
+    .av-item:last-child { border-right: none; }
+    .av-item:hover { background: var(--dark3); }
+    .av-icon { width: 56px; height: 56px; background: rgba(37,99,176,0.1); border: 1px solid rgba(37,99,176,0.25); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; color: var(--blue); }
+    .av-icon svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+    .av-title { font-family: var(--raj); font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #fff; margin-bottom: 8px; }
+    .av-desc { font-size: 13px; color: #555; line-height: 1.7; }
+
+    .about-story { display: grid; grid-template-columns: 1fr 1fr; border-bottom: var(--border); }
+    .about-story-text { padding: 80px 64px; background: var(--dark3); border-right: var(--border); }
+    .about-story-text h2 { font-family: var(--raj); font-weight: 700; font-size: clamp(26px, 3.5vw, 44px); text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-bottom: 24px; }
+    .about-story-text h2 span { color: var(--blue); }
+    .about-story-text p { font-size: 15px; color: #888; line-height: 1.9; margin-bottom: 14px; }
+    .about-story-img { position: relative; overflow: hidden; min-height: 440px; background: var(--dark3); }
+    .about-story-img img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6) saturate(0.8); }
+
+    .about-social-row { padding: 56px 64px; background: #000; border-bottom: var(--border); display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
+    .about-social-row h3 { font-family: var(--raj); font-size: 24px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #fff; white-space: nowrap; }
+    .about-social-row h3 span { color: var(--blue); }
+
+    /* ════════ SERVICES — redesigned info panel ════════ */
+    #services { padding-top: var(--nav-h); }
+    .services-list { padding: 64px 48px; display: flex; flex-direction: column; gap: 40px; background: var(--dark); }
+
+    .svc-card { display: grid; grid-template-columns: 420px 1fr; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.07); background: var(--dark2); box-shadow: 0 4px 40px rgba(0,0,0,0.5); transition: box-shadow 0.3s; }
+    .svc-card:hover { box-shadow: 0 6px 56px rgba(0,0,0,0.7), 0 0 0 1px rgba(37,99,176,0.25); }
+    .svc-photo { position: relative; overflow: hidden; min-height: 380px; background: var(--dark3); }
+    .svc-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.65) saturate(0.8); transition: transform 6s ease, filter 0.4s; display: block; }
+    .svc-card:hover .svc-photo img { transform: scale(1.04); filter: brightness(0.75) saturate(1); }
+    .svc-photo-name { position: absolute; bottom: 0; left: 0; right: 0; padding: 56px 28px 24px; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); font-family: var(--oswald); font-size: 28px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #fff; z-index: 2; }
+
+    /* Info panel — Oswald for all key text */
+    .svc-info { padding: 40px 44px; display: flex; flex-direction: column; gap: 0; }
+
+    .svc-info-title {
+      font-family: var(--oswald); font-size: 20px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase; color: #fff;
+      padding-bottom: 16px; margin-bottom: 20px;
+      border-bottom: 2px solid var(--blue);
+    }
+
+    .inc-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-bottom: 28px; }
+    .inc-item {
+      font-family: var(--oswald); font-size: 14px; font-weight: 400;
+      letter-spacing: 1px; text-transform: uppercase; color: #bbc;
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .inc-item::before { content: ''; display: block; width: 14px; height: 2px; background: var(--blue); flex-shrink: 0; }
+
+    /* Pricing box — prominent, Oswald */
+    .svc-pricing {
+      background: #000;
+      border-radius: 8px;
+      border: 1px solid rgba(37,99,176,0.3);
+      border-top: 4px solid var(--blue);
+      padding: 24px 28px;
+      margin-top: auto;
+    }
+    .svc-pricing-label {
+      font-family: var(--oswald); font-size: 18px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase; color: var(--blue);
+      margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+    }
+    .svc-pricing-label::before { content: ''; display: block; width: 20px; height: 2px; background: var(--blue); }
+    .svc-pricing-rows { display: flex; flex-direction: column; gap: 8px; }
+    .svc-pricing-row {
+      font-family: var(--oswald); font-size: 16px; font-weight: 500;
+      letter-spacing: 1px; color: #ccd;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .svc-pricing-row:last-child { border-bottom: none; }
+    .svc-pricing-row .price { font-weight: 700; color: #fff; font-size: 18px; }
+    .svc-pricing-note {
+      font-family: var(--oswald); font-size: 14px; font-weight: 400;
+      letter-spacing: 1px; color: #667; margin-top: 10px; line-height: 1.6;
+    }
+    .svc-pricing-phone {
+      font-family: var(--oswald); font-size: 20px; font-weight: 700;
+      color: var(--blue); margin-top: 12px; letter-spacing: 1px;
+      display: block; text-decoration: none; transition: color 0.2s;
+    }
+    .svc-pricing-phone:hover { color: var(--blue2); }
+
+    .addons-note { text-align: center; padding: 20px 48px 48px; font-family: var(--cond); font-size: 13px; letter-spacing: 1px; color: #444; background: var(--dark); }
+    .addons-note strong { color: var(--blue); }
+
+    /* ════════ GALLERY ════════ */
+    #gallery { padding-top: var(--nav-h); }
+    .gal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
+    .gal-item { position: relative; overflow: hidden; height: 260px; cursor: pointer; background: var(--dark3); }
+    .gal-item.tall { grid-row: span 2; height: auto; }
+    .gal-item.wide { grid-column: span 2; }
+    .gal-item img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.75) brightness(0.85); transition: transform 0.6s, filter 0.4s; display: block; }
+    .gal-item:hover img { transform: scale(1.07); filter: saturate(1) brightness(0.95); }
+    .gal-overlay { position: absolute; inset: 0; background: rgba(37,99,176,0); transition: background 0.35s; display: flex; align-items: center; justify-content: center; z-index: 2; }
+    .gal-item:hover .gal-overlay { background: rgba(37,99,176,0.22); }
+    .gal-overlay svg { opacity: 0; transform: scale(0.7); transition: opacity 0.3s, transform 0.3s; fill: none; stroke: #fff; stroke-width: 1.5; }
+    .gal-item:hover .gal-overlay svg { opacity: 1; transform: scale(1); }
+
+    .lightbox { position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.96); display: none; align-items: center; justify-content: center; }
+    .lightbox.open { display: flex; }
+    .lb-img { max-width: 90vw; max-height: 88vh; object-fit: contain; }
+    .lb-close { position: absolute; top: 20px; right: 28px; font-size: 28px; color: #fff; cursor: pointer; background: none; border: none; opacity: 0.6; transition: opacity 0.2s; }
+    .lb-close:hover { opacity: 1; color: var(--blue); }
+    .lb-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(37,99,176,0.8); border: none; color: #fff; font-size: 22px; padding: 16px 18px; cursor: pointer; transition: background 0.2s; }
+    .lb-arrow:hover { background: var(--blue); }
+    .lb-arrow.prev { left: 20px; } .lb-arrow.next { right: 20px; }
+
+    /* ════════ CONTACT ════════ */
+    #contact { padding-top: var(--nav-h); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; border-bottom: var(--border); }
+    .contact-info { background: var(--dark2); padding: 80px 60px; border-right: var(--border); }
+    .contact-info h2 { font-family: var(--raj); font-weight: 700; font-size: clamp(26px, 3.5vw, 42px); letter-spacing: 2px; text-transform: uppercase; color: #fff; margin-bottom: 10px; }
+    .contact-info h2 span { color: var(--blue); }
+    .contact-info .sub { font-family: var(--cond); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: #444; margin-bottom: 44px; }
+    .c-item { margin-bottom: 32px; }
+    .c-item-label { font-family: var(--cond); font-size: 11px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+    .c-item-val { font-size: 15px; color: #aab; line-height: 1.7; }
+    .c-item-val a { color: #aab; text-decoration: none; transition: color 0.2s; }
+    .c-item-val a:hover { color: #fff; }
+    .c-phone-big { font-family: var(--oswald); font-size: 28px; font-weight: 700; color: var(--blue); text-decoration: none; letter-spacing: 1px; transition: color 0.2s; display: block; }
+    .c-phone-big:hover { color: var(--blue2); }
+    .hours-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+    .hours-table tr td { font-family: var(--cond); font-size: 13px; padding: 5px 0; color: #666; }
+    .hours-table tr td:last-child { text-align: right; color: #aab; }
+    .contact-social { margin-top: 36px; }
+    .contact-social p { font-family: var(--cond); font-size: 11px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
+
+    .contact-form-side { background: var(--dark3); padding: 80px 60px; }
+    .contact-form-side h3 { font-family: var(--raj); font-weight: 700; font-size: 28px; letter-spacing: 2px; text-transform: uppercase; color: #fff; margin-bottom: 36px; }
+    .contact-form-side h3 span { color: var(--blue); }
+    .fg { margin-bottom: 18px; }
+    .fg label { display: block; font-family: var(--cond); font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #444; margin-bottom: 8px; }
+    .fg input, .fg select, .fg textarea { width: 100%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-bottom: 1px solid rgba(255,255,255,0.12); color: #e2e4eb; font-family: var(--body); font-size: 15px; padding: 13px 16px; outline: none; transition: border-color 0.2s; appearance: none; }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--blue); }
+    .fg textarea { min-height: 120px; resize: vertical; }
+    .fg select option { background: var(--dark3); }
+    .fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-sub { width: 100%; background: var(--blue); color: #fff; font-family: var(--cond); font-weight: 700; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; border: none; padding: 17px; cursor: pointer; transition: background 0.2s; margin-top: 8px; }
+    .form-sub:hover { background: var(--blue2); }
+    .form-ok { display: none; margin-top: 16px; padding: 14px; background: rgba(37,99,176,0.1); border: 1px solid rgba(37,99,176,0.3); font-family: var(--cond); font-size: 13px; letter-spacing: 1px; color: var(--blue); text-align: center; text-transform: uppercase; }
+    .map-section iframe { width: 100%; height: 380px; display: block; border: none; filter: invert(90%) hue-rotate(180deg) saturate(0.25) brightness(0.9); }
+
+    /* ════════ FOOTER ════════ */
+    footer { background: #000; border-top: var(--border); }
+    .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.4fr; border-bottom: var(--border); }
+    .footer-col { padding: 52px 44px; border-right: var(--border); }
+    .footer-col:last-child { border-right: none; }
+    .footer-col h4 { font-family: var(--cond); font-size: 11px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--blue); margin-bottom: 20px; }
+    .footer-logo .logo-wrap { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+    .footer-logo .logo-wrap img { height: 88px; width: 88px; object-fit: contain; border-radius: 0; margin-left: -10px; }
+    .footer-logo .logo-wrap span { font-family: var(--raj); font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #fff; line-height: 1.1; }
+    .footer-logo .logo-wrap span em { color: var(--blue); font-style: normal; display: block; font-size: 13px; letter-spacing: 3px; }
+    .footer-logo p { font-size: 13px; color: #444; line-height: 1.8; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a { font-family: var(--cond); font-size: 13px; letter-spacing: 1px; color: #444; text-decoration: none; cursor: pointer; transition: color 0.2s; }
+    .footer-col ul a:hover { color: #e2e4eb; }
+    .footer-col address { font-style: normal; font-size: 13px; color: #444; line-height: 2; }
+    .footer-col address a { color: #444; text-decoration: none; transition: color 0.2s; }
+    .footer-col address a:hover { color: #e2e4eb; }
+    .footer-social-row { display: flex; gap: 10px; margin-top: 20px; }
+    .footer-si { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border: 1px solid rgba(255,255,255,0.08); color: #444; text-decoration: none; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .footer-si:hover { border-color: var(--blue); color: #fff; background: rgba(37,99,176,0.15); }
+    .footer-si svg { width: 16px; height: 16px; fill: currentColor; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding: 20px 44px; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-family: var(--cond); font-size: 11px; letter-spacing: 1.5px; color: #2a2a2a; }
+
+    /* ════════ RESPONSIVE ════════ */
+    @media (max-width: 1100px) {
+      .svc-card { grid-template-columns: 340px 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-col { border-right: none; border-bottom: var(--border); }
+      .stats-bar { grid-template-columns: repeat(2,1fr); }
+      .svc-strip { grid-template-columns: 1fr 1fr; }
+      .about-values { grid-template-columns: repeat(2,1fr); }
+      .ba-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Tablet ── */
+    @media (max-width: 900px) {
+      :root { --nav-h: 68px; }
+      nav { padding: 0 20px; }
+      .nav-center, .nav-contact { display: none; }
+      .ham { display: flex; }
+
+      /* Nav logo */
+      .nav-logo { margin-left: -4px; }
+      .nav-logo img { height: 56px; width: 56px; }
+
+      /* Sections: stack everything */
+      .home-split, .why-section, .about-hero, .about-story, .contact-grid { grid-template-columns: 1fr; }
+      .home-split-img, .why-img, .about-hero-img, .about-story-img { min-height: 240px; max-height: 320px; }
+      .home-split-text { padding: 44px 28px; border-left: none; border-top: var(--border); }
+      .why-text { padding: 44px 28px; border-left: none; border-top: var(--border); }
+      .about-hero-text { padding: 44px 28px; border-left: none; border-top: var(--border); }
+      .about-story-text { padding: 44px 28px; border-right: none; border-bottom: var(--border); }
+      .about-story-img { min-height: 240px; }
+
+      /* Services */
+      .svc-card { grid-template-columns: 1fr; }
+      .svc-photo { min-height: 220px; max-height: 280px; }
+      .services-list { padding: 28px 16px; gap: 24px; }
+      .inc-list { grid-template-columns: 1fr; }
+      .svc-strip { grid-template-columns: 1fr; padding: 24px 20px 40px; }
+      .svc-tile { height: 240px; }
+      .svc-preview-head { padding: 36px 20px 0; flex-direction: column; align-items: flex-start; gap: 16px; }
+      .svc-info { padding: 28px 22px; }
+      .svc-pricing { padding: 20px 20px; }
+
+      /* Stats */
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { padding: 30px 16px; }
+      .stat-num { font-size: 38px; }
+
+      /* Before/after */
+      .before-after { padding: 48px 20px; }
+      .ba-grid { grid-template-columns: 1fr; }
+
+      /* Social / CTA */
+      .social-section { padding: 44px 20px; flex-direction: column; align-items: flex-start; gap: 24px; }
+      .social-big { gap: 12px; }
+      .cta-band { padding: 52px 28px; text-align: center; justify-content: center; }
+      .cta-band::before { font-size: 80px; opacity: 0.04; }
+
+      /* About values */
+      .about-values { grid-template-columns: 1fr 1fr; }
+      .av-item { padding: 36px 20px; }
+
+      /* About social */
+      .about-social-row { padding: 36px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
+
+      /* Contact */
+      .contact-info { padding: 44px 24px; border-right: none; border-bottom: var(--border); }
+      .contact-form-side { padding: 44px 24px; }
+
+      /* Gallery */
+      .gal-grid { grid-template-columns: repeat(2, 1fr); }
+      .gal-item { height: 200px; }
+      .gal-item.wide { grid-column: span 1; }
+      .gal-item.tall { grid-row: span 1; height: 200px; }
+
+      /* Page heroes */
+      .page-hero { height: 260px; }
+
+      /* Footer */
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-col { padding: 28px 24px; border-right: none; border-bottom: var(--border); }
+      .footer-col:last-child { border-bottom: none; }
+      .footer-bottom { padding: 16px 24px; flex-direction: column; align-items: flex-start; gap: 6px; }
+
+      /* Misc */
+      .mobile-badge { display: none; }
+      .slider { min-height: 360px; }
+      .slide-content { padding: 0 20px; }
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 560px) {
+      :root { --nav-h: 64px; }
+
+      /* Hero slider */
+      .slider { height: calc(100vh - var(--nav-h)); min-height: 340px; max-height: 540px; }
+      .slide-content h1 { font-size: clamp(28px, 9vw, 40px); letter-spacing: 1px; line-height: 1.05; }
+      .slide-content p { font-size: 11px; letter-spacing: 3px; }
+      .sl-arrow { width: 40px; height: 40px; font-size: 20px; }
+      .sl-prev { left: 10px; } .sl-next { right: 10px; }
+
+      /* Stats */
+      .stats-bar { grid-template-columns: 1fr 1fr; }
+      .stat-item { padding: 22px 12px; }
+      .stat-num { font-size: 32px; }
+      .stat-label { font-size: 10px; letter-spacing: 2px; }
+
+      /* Home split text */
+      .home-split-text { padding: 36px 20px; }
+      .home-split-text h2 { font-size: clamp(24px, 7vw, 34px); }
+      .home-phone { font-size: 20px; }
+
+      /* Service tiles */
+      .svc-tile { height: 200px; }
+      .svc-strip { padding: 18px 16px 36px; gap: 14px; }
+      .svc-preview-head { padding: 32px 16px 0; }
+
+      /* Services list cards */
+      .services-list { padding: 20px 12px; gap: 20px; }
+      .svc-photo { min-height: 190px; max-height: 240px; }
+      .svc-photo-name { font-size: 22px; letter-spacing: 2px; padding: 40px 18px 18px; }
+      .svc-info { padding: 22px 18px; gap: 0; }
+      .svc-info-title { font-size: 16px; letter-spacing: 2px; padding-bottom: 12px; margin-bottom: 16px; }
+      .inc-list { grid-template-columns: 1fr; gap: 0; margin-bottom: 20px; }
+      .inc-item { font-size: 13px; padding: 7px 0; }
+      .svc-pricing { padding: 18px 16px; }
+      .svc-pricing-label { font-size: 15px; }
+      .svc-pricing-row { font-size: 14px; }
+      .svc-pricing-row .price { font-size: 16px; }
+      .svc-pricing-phone { font-size: 18px; }
+
+      /* Before/after */
+      .before-after { padding: 36px 16px; }
+      .ba-head { margin-bottom: 32px; }
+      .ba-grid { grid-template-columns: 1fr; gap: 3px; }
+      .ba-pair { grid-template-columns: 1fr 1fr; gap: 3px; }
+      .ba-img { height: 180px; }
+      .ba-tag { font-size: 10px; padding: 4px 10px; }
+      .ba-divider { display: block; }
+
+      /* Why section */
+      .why-text { padding: 36px 20px; }
+      .why-item { gap: 14px; margin-bottom: 22px; padding-bottom: 22px; }
+      .why-icon { width: 40px; height: 40px; flex-shrink: 0; }
+      .why-item-title { font-size: 15px; }
+      .why-item-desc { font-size: 13px; }
+
+      /* Social section */
+      .social-section { padding: 36px 16px; }
+      .si-big { padding: 12px 16px; }
+      .si-big span { font-size: 12px; }
+
+      /* CTA */
+      .cta-band { padding: 44px 20px; flex-direction: column; text-align: center; gap: 24px; }
+      .cta-band::before { display: none; }
+
+      /* About */
+      .about-hero-text { padding: 36px 20px; }
+      .about-values { grid-template-columns: 1fr 1fr; }
+      .av-item { padding: 28px 14px; }
+      .av-title { font-size: 15px; }
+      .av-desc { font-size: 12px; }
+      .about-story-text { padding: 36px 20px; }
+      .about-social-row { padding: 32px 16px; }
+
+      /* Gallery */
+      .gal-grid { grid-template-columns: 1fr 1fr; gap: 3px; }
+      .gal-item { height: 160px; }
+      .gal-item.tall { grid-row: span 1; height: 160px; }
+
+      /* Page heroes */
+      .page-hero { height: 200px; }
+      .page-hero h1 { font-size: clamp(28px, 8vw, 48px); letter-spacing: 3px; }
+
+      /* Contact */
+      .contact-info { padding: 36px 18px; }
+      .contact-info h2 { font-size: clamp(22px, 7vw, 36px); }
+      .contact-info .sub { margin-bottom: 32px; }
+      .c-phone-big { font-size: 24px; }
+      .contact-form-side { padding: 36px 18px; }
+      .contact-form-side h3 { font-size: 22px; margin-bottom: 28px; }
+      .fg-row { grid-template-columns: 1fr; }
+      .fg input, .fg select, .fg textarea { font-size: 16px; } /* prevents iOS zoom */
+
+      /* Footer */
+      .footer-logo .logo-wrap img { height: 64px; width: 64px; }
+      .footer-logo .logo-wrap span { font-size: 17px; }
+      .footer-col { padding: 24px 20px; }
+
+      /* Addons note */
+      .addons-note { padding: 16px 20px 36px; font-size: 12px; }
+
+      /* Lightbox */
+      .lb-arrow { padding: 12px 14px; font-size: 18px; }
+      .lb-arrow.prev { left: 6px; }
+      .lb-arrow.next { right: 6px; }
+      .lb-close { top: 12px; right: 16px; font-size: 24px; }
+
+      /* Map */
+      .map-section iframe { height: 260px; }
+
+      /* Section tags */
+      .section-tag { font-size: 11px; }
+
+      /* Buttons */
+      .btn-blue, .btn-outline-blue, .btn-white { padding: 12px 24px; font-size: 12px; letter-spacing: 2px; }
+      .nav-contact { letter-spacing: 2px; font-size: 12px; padding: 10px 20px; }
+    }
+
+    /* ── Small phones ── */
+    @media (max-width: 380px) {
+      .slide-content h1 { font-size: 26px; }
+      .stats-bar { grid-template-columns: 1fr 1fr; }
+      .stat-num { font-size: 28px; }
+      .about-values { grid-template-columns: 1fr; }
+      .av-item { padding: 24px 16px; border-right: none; border-bottom: var(--border); }
+      .gal-grid { grid-template-columns: 1fr; }
+      .gal-item { height: 200px; }
+      .ba-pair { grid-template-columns: 1fr 1fr; }
+      .ba-img { height: 150px; }
+      .footer-logo .logo-wrap { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav>
+  <div class="nav-logo" onclick="go('home')">
+    <img src="IMG_6632.jpg" alt="IC Auto Detailing" />
+  </div>
+  <ul class="nav-center">
+    <li><a id="nl-home" class="active-lnk" onclick="go('home')">Home</a></li>
+    <li><a id="nl-about" onclick="go('about')">About</a></li>
+    <li><a id="nl-services" onclick="go('services')">Services</a></li>
+    <li><a id="nl-gallery" onclick="go('gallery')">Gallery</a></li>
+  </ul>
+  <a href="#" class="nav-contact" onclick="go('contact');return false;">Contact</a>
+  <button class="ham" id="ham" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mob-menu" id="mobMenu">
+  <a onclick="go('home');closeMenu()">Home</a>
+  <a onclick="go('about');closeMenu()">About</a>
+  <a onclick="go('services');closeMenu()">Services</a>
+  <a onclick="go('gallery');closeMenu()">Gallery</a>
+  <a onclick="go('contact');closeMenu()">Contact</a>
+  <div class="mob-cta-row">
+    <a href="tel:9452044317" class="mob-cta-call">&#9742;&nbsp; (945) 204-4317</a>
+  </div>
+</div>
+
+<!-- ══════════ HOME ══════════ -->
+<div class="page active" id="home">
+
+  <div class="slider">
+    <div class="slide active">
+      <img src="IMG_6641.jpg" alt="Ram TRX" style="object-position:center 40%;" />
+      <div class="slide-content">
+        <h1>Mobile Auto<br/>Detailing in <span>Texas</span></h1>
+        <p>We Come To You</p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="IMG_6643.jpg" alt="Chevy Silverado" style="object-position:center 45%;" />
+      <div class="slide-content">
+        <h1>Keep Your Vehicle<br/><span>Protected</span> &amp; Pristine</h1>
+        <p>Ceramic &amp; Paint Correction Available</p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="IMG_6653.jpg" alt="Mercedes GLC" style="object-position:center 50%;" />
+      <div class="slide-content">
+        <h1>Interior &amp; Exterior<br/><span>Detailing</span> Done Right</h1>
+        <p>Every Vehicle, Every Time</p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="IMG_6662.jpg" alt="Toyota GR86" style="object-position:center 45%;" />
+      <div class="slide-content">
+        <h1>Trusted by Texas<br/><span>Car Enthusiasts</span></h1>
+        <p>Quality You Can See</p>
+      </div>
+    </div>
+    <button class="sl-arrow sl-prev" onclick="moveSlide(-1)">&#8249;</button>
+    <button class="sl-arrow sl-next" onclick="moveSlide(1)">&#8250;</button>
+    <div class="sl-dots" id="slDots">
+      <div class="sl-dot active" onclick="goSlide(0)"></div>
+      <div class="sl-dot" onclick="goSlide(1)"></div>
+      <div class="sl-dot" onclick="goSlide(2)"></div>
+      <div class="sl-dot" onclick="goSlide(3)"></div>
+    </div>
+    <div class="mobile-badge">
+      <div>Call Us Today</div>
+      <div>(945) 204-4317</div>
+    </div>
+  </div>
+
+  <div class="home-split">
+    <div class="home-split-img">
+      <img src="IMG_6639.jpg" alt="Ram TRX detailed" style="object-position:center 40%;" />
+    </div>
+    <div class="home-split-text">
+      <div class="section-tag">IC Auto Detailing</div>
+      <h2>Mobile Detailing <span>|</span> Texas</h2>
+      <p>We are a mobile auto detailing company serving Texas. We come to you — at your home, office, or wherever works best. No need to drive anywhere or wait in line.</p>
+      <p>From quick exterior washes to full paint correction and ceramic coatings, we deliver professional results right at your door.</p>
+      <a href="tel:9452044317" class="home-phone">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.36 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.76a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (945) 204-4317
+      </a>
+      <button class="btn-blue" style="margin-top:20px;display:inline-block;width:fit-content;" onclick="go('about')">Learn More &rarr;</button>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-num">TX</div><div class="stat-label">Mobile Service</div></div>
+    <div class="stat-item"><div class="stat-num">5&nbsp;&#9733;</div><div class="stat-label">Star Rated</div></div>
+    <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Satisfaction</div></div>
+    <div class="stat-item"><div class="stat-num">PRO</div><div class="stat-label">Grade Products</div></div>
+  </div>
+
+  <div class="svc-preview">
+    <div class="svc-preview-head">
+      <div>
+        <div class="section-tag">What We Do</div>
+        <h2>Our <span>Services</span></h2>
+      </div>
+      <button class="btn-outline-blue" onclick="go('services')">View All Services &rarr;</button>
+    </div>
+    <div class="svc-strip">
+      <div class="svc-tile" onclick="go('services')">
+        <img src="IMG_6638.jpg" alt="Exterior wash" style="object-position:center 50%;" />
+        <div class="svc-tile-content"><div class="svc-tile-name">Exterior Detail</div><div class="svc-tile-sub">Hand wash &amp; protection</div></div>
+        <div class="svc-tile-arrow">&#8599;</div>
+      </div>
+      <div class="svc-tile" onclick="go('services')">
+        <img src="IMG_6633.jpg" alt="Interior detail" style="object-position:center 40%;" />
+        <div class="svc-tile-content"><div class="svc-tile-name">Interior Detail</div><div class="svc-tile-sub">Deep clean &amp; restore</div></div>
+        <div class="svc-tile-arrow">&#8599;</div>
+      </div>
+      <div class="svc-tile" onclick="go('services')">
+        <img src="IMG_6655.jpg" alt="Mercedes detailed" style="object-position:center 50%;" />
+        <div class="svc-tile-content"><div class="svc-tile-name">Paint Correction</div><div class="svc-tile-sub">Remove swirls &amp; scratches</div></div>
+        <div class="svc-tile-arrow">&#8599;</div>
+      </div>
+      <div class="svc-tile" onclick="go('services')">
+        <img src="IMG_6653.jpg" alt="Mercedes GLC" style="object-position:center 50%;" />
+        <div class="svc-tile-content"><div class="svc-tile-name">Ceramic Coating</div><div class="svc-tile-sub">Long-term protection</div></div>
+        <div class="svc-tile-arrow">&#8599;</div>
+      </div>
+      <div class="svc-tile" onclick="go('services')">
+        <img src="IMG_6643.jpg" alt="Silverado Z71" style="object-position:center 45%;" />
+        <div class="svc-tile-content"><div class="svc-tile-name">Full Detail Package</div><div class="svc-tile-sub">Inside &amp; out</div></div>
+        <div class="svc-tile-arrow">&#8599;</div>
+      </div>
+      <div class="svc-tile" onclick="go('services')">
+        <img src="IMG_6636.jpg" alt="Ford F350" style="object-position:center 40%;" />
+        <div class="svc-tile-content"><div class="svc-tile-name">Trucks &amp; SUVs</div><div class="svc-tile-sub">Any size vehicle</div></div>
+        <div class="svc-tile-arrow">&#8599;</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BEFORE / AFTER -->
+  <div class="before-after">
+    <div class="ba-head">
+      <div class="section-tag" style="justify-content:center;">Real Results</div>
+      <h2>Before <span>&amp; After</span></h2>
+      <p>See the IC Auto difference — same vehicle, same day</p>
+    </div>
+    <div class="ba-grid">
+      <!-- Pair 1: Cargo area before/after -->
+      <div class="ba-pair">
+        <div class="ba-img">
+          <img src="IMG_6645.jpg" alt="Cargo area before" style="object-position:center 50%;" />
+          <div class="ba-tag before">Before</div>
+        </div>
+        <div class="ba-divider"></div>
+        <div class="ba-img">
+          <img src="IMG_6644.jpg" alt="Cargo area after" style="object-position:center 50%;" />
+          <div class="ba-tag after">After</div>
+        </div>
+      </div>
+      <!-- Pair 2: Interior before/after -->
+      <div class="ba-pair">
+        <div class="ba-img">
+          <img src="IMG_6659.jpg" alt="Interior before" style="object-position:center 50%;" />
+          <div class="ba-tag before">Before</div>
+        </div>
+        <div class="ba-divider"></div>
+        <div class="ba-img">
+          <img src="IMG_6658.jpg" alt="Interior after" style="object-position:center 50%;" />
+          <div class="ba-tag after">After</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="why-section">
+    <div class="why-img">
+      <img src="IMG_6654.jpg" alt="Range Rover Velar" style="object-position:center 45%;" />
+    </div>
+    <div class="why-text">
+      <div class="section-tag">Why IC Auto</div>
+      <h2>Why Choose <span>Us</span></h2>
+      <div class="why-item">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div>
+        <div><div class="why-item-title">We Come To You</div><div class="why-item-desc">Mobile service means you never have to leave your home or office. We bring everything needed to deliver a full professional detail wherever you are.</div></div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <div><div class="why-item-title">Pro-Grade Products</div><div class="why-item-desc">We use only professional-grade compounds, coatings, and cleaning agents — the same products used by top detailing shops.</div></div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div><div class="why-item-title">Paint Protection</div><div class="why-item-desc">From sealants to multi-year ceramic coatings, we keep your vehicle looking new and protected against the elements.</div></div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div><div class="why-item-title">Satisfaction Guaranteed</div><div class="why-item-desc">We do not leave until the job is done right. Your satisfaction is the standard we hold ourselves to on every single job.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="social-section">
+    <div class="social-section-text">
+      <h3>Follow <span>IC Auto</span></h3>
+      <p>See our latest work on social media</p>
+    </div>
+    <div class="social-big">
+      <a href="https://www.instagram.com/ic_autodetailing" target="_blank" class="si-big">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        <span>Instagram</span>
+      </a>
+      <a href="https://www.facebook.com/ic.Autodetailing/" target="_blank" class="si-big">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <span>Facebook</span>
+      </a>
+      <a href="https://www.tiktok.com/@ic_autodetailing" target="_blank" class="si-big">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+        <span>TikTok</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="cta-band">
+    <div>
+      <h2>Ready for a Flawless<br/>Finish?</h2>
+      <p>Call or message us — we come to you</p>
+    </div>
+    <a href="tel:9452044317" class="btn-white">(945) 204-4317</a>
+  </div>
+
+</div><!-- /home -->
+
+<!-- ══════════ ABOUT ══════════ -->
+<div class="page" id="about">
+  <div class="about-hero">
+    <div class="about-hero-img">
+      <img src="IMG_6650.jpg" alt="GMC Sierra" style="object-position:center 45%;" />
+    </div>
+    <div class="about-hero-text">
+      <div class="section-tag">Who We Are</div>
+      <h1>IC Auto<span>Detailing</span></h1>
+      <p>We are a Texas-based mobile auto detailing company built on passion, precision, and a genuine commitment to quality. We bring the shop to you — fully equipped, ready to deliver professional results wherever you are.</p>
+      <p>Every vehicle gets our full attention. No shortcuts, no rushing, just exceptional results every time.</p>
+      <a href="tel:9452044317" class="home-phone" style="margin-top:16px;">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.36 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.76a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (945) 204-4317
+      </a>
+    </div>
+  </div>
+
+  <div class="about-values">
+    <div class="av-item"><div class="av-icon"><svg viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div><div class="av-title">We Come To You</div><div class="av-desc">Mobile service at your home, office, or anywhere that works for you.</div></div>
+    <div class="av-item"><div class="av-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div><div class="av-title">Attention to Detail</div><div class="av-desc">Every panel, every seam — we do not stop until the job is done right.</div></div>
+    <div class="av-item"><div class="av-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div class="av-title">Pro-Grade Products</div><div class="av-desc">Industry-leading compounds and coatings used by professional detailers.</div></div>
+    <div class="av-item"><div class="av-icon"><svg viewBox="0 0 24 24"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div><div class="av-title">Satisfaction Guaranteed</div><div class="av-desc">We are not done until you are 100% happy with the results.</div></div>
+  </div>
+
+  <div class="about-story">
+    <div class="about-story-text">
+      <div class="section-tag">Our Story</div>
+      <h2>Where We <span>Come From</span></h2>
+      <p>IC Auto Detailing started with a straightforward mission: give Texas drivers access to honest, professional-quality detailing without the hassle of driving to a shop or waiting around. We handle everything — you just pick the time and place.</p>
+      <p>We have detailed everything from work trucks and family SUVs to BMWs, Teslas, and everything in between. No vehicle is too big, too small, or too dirty. We show up ready and we do not leave until the job is done right.</p>
+      <p>At the end of the day, this is about more than a clean car. It is about taking pride in what you drive and trusting someone to care for it the way you do.</p>
+    </div>
+    <div class="about-story-img">
+      <img src="IMG_6661.jpg" alt="Toyota GR86" style="object-position:center 45%;" />
+    </div>
+  </div>
+
+  <div class="about-social-row">
+    <h3>Follow <span>Our Work</span></h3>
+    <div class="social-big">
+      <a href="https://www.instagram.com/ic_autodetailing" target="_blank" class="si-big"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg><span>@ic_autodetailing</span></a>
+      <a href="https://www.facebook.com/ic.Autodetailing/" target="_blank" class="si-big"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg><span>IC Auto Detailing</span></a>
+      <a href="https://www.tiktok.com/@ic_autodetailing" target="_blank" class="si-big"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg><span>@ic_autodetailing</span></a>
+    </div>
+  </div>
+
+  <div class="cta-band">
+    <div><h2>Ready to Book<br/>Your Detail?</h2><p>We come to you &mdash; call us today</p></div>
+    <a href="tel:9452044317" class="btn-white">(945) 204-4317</a>
+  </div>
+</div><!-- /about -->
+
+<!-- ══════════ SERVICES ══════════ -->
+<div class="page" id="services">
+  <div class="page-hero">
+    <img src="IMG_6641.jpg" alt="Ram TRX" style="object-position:center 40%;" />
+    <h1>Our <span>Services</span></h1>
+  </div>
+
+  <div class="services-list">
+
+    <div class="svc-card">
+      <div class="svc-photo">
+        <img src="IMG_6638.jpg" alt="Express Exterior" style="object-position:center 50%;" />
+        <div class="svc-photo-name">Express Exterior</div>
+      </div>
+      <div class="svc-info">
+        <div class="svc-info-title">What's Included</div>
+        <div class="inc-list">
+          <div class="inc-item">Wheels &amp; tires cleaned</div><div class="inc-item">Fender wells cleaned</div>
+          <div class="inc-item">Foam bath / hand wash</div><div class="inc-item">Tires shined</div>
+          <div class="inc-item">Door jambs dried</div><div class="inc-item">Gas compartment cleaned</div>
+          <div class="inc-item">Spray sealant applied</div><div class="inc-item">Windows cleaned</div>
+        </div>
+        <div class="svc-pricing">
+          <div class="svc-pricing-label">Starting Prices</div>
+          <div class="svc-pricing-rows">
+            <div class="svc-pricing-row"><span>Sedan / Coupe</span><span class="price">From $80</span></div>
+            <div class="svc-pricing-row"><span>Mid-Size SUV</span><span class="price">From $100</span></div>
+            <div class="svc-pricing-row"><span>Full-Size SUV / Truck</span><span class="price">From $120</span></div>
+          </div>
+          <div class="svc-pricing-note">Final price depends on vehicle condition. Call to confirm.</div>
+          <a href="tel:9452044317" class="svc-pricing-phone">(945) 204-4317</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-photo">
+        <img src="IMG_6633.jpg" alt="Full Interior" style="object-position:center 35%;" />
+        <div class="svc-photo-name">Full Interior</div>
+      </div>
+      <div class="svc-info">
+        <div class="svc-info-title">What's Included</div>
+        <div class="inc-list">
+          <div class="inc-item">Full vacuum</div><div class="inc-item">Floor mats cleaned</div>
+          <div class="inc-item">Windows wiped</div><div class="inc-item">Leather seats cleaned</div>
+          <div class="inc-item">Spot cleaning</div><div class="inc-item">All plastic &amp; trim cleaned</div>
+          <div class="inc-item">Pedals cleaned</div><div class="inc-item">Scent applied</div>
+        </div>
+        <div class="svc-pricing">
+          <div class="svc-pricing-label">Starting Prices</div>
+          <div class="svc-pricing-rows">
+            <div class="svc-pricing-row"><span>Sedan / Coupe</span><span class="price">From $100</span></div>
+            <div class="svc-pricing-row"><span>Mid-Size SUV</span><span class="price">From $130</span></div>
+            <div class="svc-pricing-row"><span>Full-Size SUV / Truck</span><span class="price">From $160</span></div>
+          </div>
+          <div class="svc-pricing-note">Final price depends on vehicle condition. Call to confirm.</div>
+          <a href="tel:9452044317" class="svc-pricing-phone">(945) 204-4317</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-photo">
+        <img src="IMG_6641.jpg" alt="Full Detail Package" style="object-position:center 40%;" />
+        <div class="svc-photo-name">Full Detail Package</div>
+      </div>
+      <div class="svc-info">
+        <div class="svc-info-title">What's Included</div>
+        <div class="inc-list">
+          <div class="inc-item">Everything in Exterior</div><div class="inc-item">Everything in Interior</div>
+          <div class="inc-item">Bug remover applied</div><div class="inc-item">Door frames cleaned</div>
+          <div class="inc-item">Leather conditioning</div><div class="inc-item">Fender wells cleaned</div>
+          <div class="inc-item">Spray sealant</div><div class="inc-item">Scent applied</div>
+        </div>
+        <div class="svc-pricing">
+          <div class="svc-pricing-label">Starting Prices</div>
+          <div class="svc-pricing-rows">
+            <div class="svc-pricing-row"><span>Sedan / Coupe</span><span class="price">From $160</span></div>
+            <div class="svc-pricing-row"><span>Mid-Size SUV</span><span class="price">From $200</span></div>
+            <div class="svc-pricing-row"><span>Full-Size SUV / Truck</span><span class="price">From $240</span></div>
+          </div>
+          <div class="svc-pricing-note">Final price depends on vehicle condition. Call to confirm.</div>
+          <a href="tel:9452044317" class="svc-pricing-phone">(945) 204-4317</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-photo">
+        <img src="IMG_6655.jpg" alt="Paint Correction" style="object-position:center 50%;" />
+        <div class="svc-photo-name">Paint Correction</div>
+      </div>
+      <div class="svc-info">
+        <div class="svc-info-title">What's Included</div>
+        <div class="inc-list">
+          <div class="inc-item">Single-stage polishing</div><div class="inc-item">Multi-stage available</div>
+          <div class="inc-item">Swirl mark removal</div><div class="inc-item">Scratch reduction</div>
+          <div class="inc-item">Water spot removal</div><div class="inc-item">Oxidation removal</div>
+          <div class="inc-item">Paint depth measured</div><div class="inc-item">Mirror finish result</div>
+        </div>
+        <div class="svc-pricing">
+          <div class="svc-pricing-label">Custom Quote</div>
+          <div class="svc-pricing-note">Pricing varies by vehicle size and condition. Call us for an accurate estimate.</div>
+          <a href="tel:9452044317" class="svc-pricing-phone">(945) 204-4317</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-card">
+      <div class="svc-photo">
+        <img src="IMG_6653.jpg" alt="Ceramic Coating" style="object-position:center 50%;" />
+        <div class="svc-photo-name">Ceramic Coating</div>
+      </div>
+      <div class="svc-info">
+        <div class="svc-info-title">What's Included</div>
+        <div class="inc-list">
+          <div class="inc-item">Professional nano-ceramic</div><div class="inc-item">Hydrophobic protection</div>
+          <div class="inc-item">UV resistance</div><div class="inc-item">Chemical resistance</div>
+          <div class="inc-item">Gloss enhancement</div><div class="inc-item">Multi-year durability</div>
+          <div class="inc-item">Paint prep &amp; decon</div><div class="inc-item">Panel inspection</div>
+        </div>
+        <div class="svc-pricing">
+          <div class="svc-pricing-label">Custom Quote</div>
+          <div class="svc-pricing-note">Pricing varies by vehicle size and coating tier. Call us for an accurate estimate.</div>
+          <a href="tel:9452044317" class="svc-pricing-phone">(945) 204-4317</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="addons-note"><strong>Note:</strong> All pricing varies based on vehicle size, condition, and service selected. Call us at (945) 204-4317 for an accurate quote.</div>
+</div><!-- /services -->
+
+<!-- ══════════ GALLERY ══════════ -->
+<div class="page" id="gallery">
+  <div class="page-hero">
+    <img src="IMG_6643.jpg" alt="Gallery" style="object-position:center 45%;" />
+    <h1>Our <span>Work</span></h1>
+  </div>
+  <div class="gal-grid">
+    <!-- Row 1: F350 wide + Ram foam wash tall + Ram TRX -->
+    <div class="gal-item wide" onclick="openLb(0)"><img src="IMG_6636.jpg" alt="Ford F350" style="object-position:center 40%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    <div class="gal-item tall" onclick="openLb(1)"><img src="IMG_6638.jpg" alt="Ram foam wash" style="object-position:center 50%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    <div class="gal-item" onclick="openLb(2)"><img src="IMG_6639.jpg" alt="Ram TRX grey" style="object-position:center 40%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    <div class="gal-item" onclick="openLb(3)"><img src="IMG_6641.jpg" alt="Ram TRX driveway" style="object-position:center 40%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    <!-- Row 2 -->
+    <div class="gal-item" onclick="openLb(4)"><img src="IMG_6643.jpg" alt="Chevy Silverado Z71" style="object-position:center 45%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    <div class="gal-item" onclick="openLb(5)"><img src="IMG_6665.jpg" alt="Chevy Silverado white lifted" style="object-position:center 40%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    <div class="gal-item" onclick="openLb(6)"><img src="IMG_6651.jpg" alt="GMC Sierra red rear" style="object-position:center 45%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    <div class="gal-item" onclick="openLb(7)"><img src="IMG_6650.jpg" alt="GMC Sierra red" style="object-position:center 45%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    <!-- Row 3: Mercedes wide + Range Rover + E-Class -->
+    <div class="gal-item wide" onclick="openLb(8)"><img src="IMG_6653.jpg" alt="Mercedes GLC" style="object-position:center 50%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    <div class="gal-item" onclick="openLb(9)"><img src="IMG_6654.jpg" alt="Range Rover Velar" style="object-position:center 50%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    <div class="gal-item" onclick="openLb(10)"><img src="IMG_6655.jpg" alt="Mercedes E-Class" style="object-position:center 50%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    <!-- Row 4: GR86 + Tesla + new F350 wheel -->
+    <div class="gal-item" onclick="openLb(11)"><img src="IMG_6661.jpg" alt="Toyota GR86" style="object-position:center 45%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    <div class="gal-item" onclick="openLb(12)"><img src="IMG_6663.jpg" alt="Tesla Model Y" style="object-position:center 45%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    <div class="gal-item" onclick="openLb(13)"><img src="IMG_6637.jpg" alt="F350 wheel detail" style="object-position:center 50%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    <!-- Interior before & after — side by side, same row -->
+    <div class="gal-item" onclick="openLb(14)"><img src="IMG_6659.jpg" alt="Interior before" style="object-position:center 50%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    <div class="gal-item" onclick="openLb(15)"><img src="IMG_6658.jpg" alt="Interior after" style="object-position:center 50%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    <!-- BMW interiors + Toyota Highlander interior -->
+    <div class="gal-item" onclick="openLb(16)"><img src="IMG_6649.jpg" alt="BMW iX interior" style="object-position:center 40%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    <div class="gal-item" onclick="openLb(17)"><img src="IMG_6656.jpg" alt="Ford Escape interior clean" style="object-position:center 40%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+    <div class="gal-item wide" onclick="openLb(18)"><img src="IMG_6657.jpg" alt="Toyota Highlander interior" style="object-position:center 45%;" /><div class="gal-overlay"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+</div><!-- /gallery -->
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" onclick="closeLb()">&#10005;</button>
+  <button class="lb-arrow prev" onclick="moveLb(-1)">&#8249;</button>
+  <img class="lb-img" id="lbImg" src="" alt="" />
+  <button class="lb-arrow next" onclick="moveLb(1)">&#8250;</button>
+</div>
+
+<!-- ══════════ CONTACT ══════════ -->
+<div class="page" id="contact">
+  <div class="page-hero">
+    <img src="IMG_6654.jpg" alt="Range Rover Velar" style="object-position:center 50%;" />
+    <h1>Get In <span>Touch</span></h1>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h2>IC Auto <span>Detailing</span></h2>
+      <p class="sub">Mobile Detailing &mdash; We Come To You</p>
+      <div class="c-item">
+        <div class="c-item-label">Phone</div>
+        <div class="c-item-val"><a href="tel:9452044317" class="c-phone-big">(945) 204-4317</a></div>
+      </div>
+      <div class="c-item">
+        <div class="c-item-label">Service Area</div>
+        <div class="c-item-val">Texas &mdash; Mobile Service Available</div>
+      </div>
+      <div class="c-item">
+        <div class="c-item-label">Hours</div>
+        <div class="c-item-val">
+          <table class="hours-table">
+            <tr><td>Monday &mdash; Friday</td><td>By Appointment</td></tr>
+            <tr><td>Saturday</td><td>By Appointment</td></tr>
+            <tr><td>Sunday</td><td>By Appointment</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="contact-social">
+        <p>Follow Us</p>
+        <div class="social-big" style="flex-direction:column; gap:10px;">
+          <a href="https://www.instagram.com/ic_autodetailing" target="_blank" class="si-big"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg><span>Instagram</span></a>
+          <a href="https://www.facebook.com/ic.Autodetailing/" target="_blank" class="si-big"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg><span>Facebook</span></a>
+          <a href="https://www.tiktok.com/@ic_autodetailing" target="_blank" class="si-big"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg><span>TikTok</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-side">
+      <h3>Request a <span>Quote</span></h3>
+      <form id="cForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="submitForm(event)">
+        <div class="fg-row">
+          <div class="fg"><label>First Name</label><input type="text" name="first_name" required placeholder="John" /></div>
+          <div class="fg"><label>Last Name</label><input type="text" name="last_name" required placeholder="Doe" /></div>
+        </div>
+        <div class="fg-row">
+          <div class="fg"><label>Phone</label><input type="tel" name="phone" required placeholder="(XXX) XXX-XXXX" /></div>
+          <div class="fg"><label>Email</label><input type="email" name="email" required placeholder="you@email.com" /></div>
+        </div>
+        <div class="fg"><label>Vehicle (Year / Make / Model)</label><input type="text" name="vehicle" placeholder="e.g. 2022 Toyota Camry" /></div>
+        <div class="fg"><label>Your Location / Address</label><input type="text" name="location" placeholder="Where should we come to?" /></div>
+        <div class="fg">
+          <label>Service</label>
+          <select name="service">
+            <option value="">Select a service...</option>
+            <option>Express Exterior</option>
+            <option>Full Interior</option>
+            <option>Full Detail Package</option>
+            <option>Paint Correction</option>
+            <option>Ceramic Coating</option>
+            <option>Not Sure / Other</option>
+          </select>
+        </div>
+        <div class="fg"><label>Message</label><textarea name="message" placeholder="Tell us more about what you need..."></textarea></div>
+        <button type="submit" class="form-sub">Send Request</button>
+        <div class="form-ok" id="fOk">Message sent. We will reach out within 24 hours.</div>
+      </form>
+    </div>
+  </div>
+</div><!-- /contact -->
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-col footer-logo">
+      <div class="logo-wrap">
+        <img src="IMG_6632.jpg" alt="IC Auto Detailing" />
+        <span>IC Auto<em>Detailing</em></span>
+      </div>
+      <p>Professional mobile auto detailing in Texas. We come to you — quality you can see, results that last.</p>
+      <div class="footer-social-row">
+        <a href="https://www.instagram.com/ic_autodetailing" target="_blank" class="footer-si"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
+        <a href="https://www.facebook.com/ic.Autodetailing/" target="_blank" class="footer-si"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.tiktok.com/@ic_autodetailing" target="_blank" class="footer-si"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a onclick="go('services')">Express Exterior</a></li>
+        <li><a onclick="go('services')">Full Interior</a></li>
+        <li><a onclick="go('services')">Full Detail Package</a></li>
+        <li><a onclick="go('services')">Paint Correction</a></li>
+        <li><a onclick="go('services')">Ceramic Coating</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <ul>
+        <li><a onclick="go('home')">Home</a></li>
+        <li><a onclick="go('about')">About</a></li>
+        <li><a onclick="go('services')">Services</a></li>
+        <li><a onclick="go('gallery')">Gallery</a></li>
+        <li><a onclick="go('contact')">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <address>
+        Mobile Service &mdash; Texas<br/><br/>
+        <a href="tel:9452044317">(945) 204-4317</a>
+      </address>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 IC Auto Detailing &mdash; Texas</p>
+    <p>Mobile Auto Detailing</p>
+  </div>
+</footer>
+
+<script>
+  const pages = ['home','about','services','gallery','contact'];
+  function go(id) {
+    pages.forEach(p => {
+      document.getElementById(p).classList.remove('active');
+      const l = document.getElementById('nl-' + p);
+      if (l) l.classList.remove('active-lnk');
+    });
+    document.getElementById(id).classList.add('active');
+    const l = document.getElementById('nl-' + id);
+    if (l) l.classList.add('active-lnk');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function toggleMenu() { document.getElementById('ham').classList.toggle('open'); document.getElementById('mobMenu').classList.toggle('open'); }
+  function closeMenu() { document.getElementById('ham').classList.remove('open'); document.getElementById('mobMenu').classList.remove('open'); }
+
+  let cur = 0;
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.sl-dot');
+  function goSlide(n) { slides[cur].classList.remove('active'); dots[cur].classList.remove('active'); cur = (n + slides.length) % slides.length; slides[cur].classList.add('active'); dots[cur].classList.add('active'); }
+  function moveSlide(d) { goSlide(cur + d); }
+  setInterval(() => moveSlide(1), 5500);
+
+  const lbImgs = ['IMG_6636.jpg','IMG_6638.jpg','IMG_6639.jpg','IMG_6641.jpg','IMG_6643.jpg','IMG_6665.jpg','IMG_6651.jpg','IMG_6650.jpg','IMG_6653.jpg','IMG_6654.jpg','IMG_6655.jpg','IMG_6661.jpg','IMG_6663.jpg','IMG_6637.jpg','IMG_6659.jpg','IMG_6658.jpg','IMG_6649.jpg','IMG_6656.jpg','IMG_6657.jpg'];
+  let lbCur = 0;
+  function openLb(i) { lbCur = i; document.getElementById('lbImg').src = lbImgs[i]; document.getElementById('lightbox').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeLb() { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; }
+  function moveLb(d) { lbCur = (lbCur + d + lbImgs.length) % lbImgs.length; document.getElementById('lbImg').src = lbImgs[lbCur]; }
+  document.getElementById('lightbox').addEventListener('click', function(e) { if (e.target === this) closeLb(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); if (e.key === 'ArrowLeft') moveLb(-1); if (e.key === 'ArrowRight') moveLb(1); });
+
+  async function submitForm(e) {
+    e.preventDefault();
+    const form = e.target, btn = form.querySelector('.form-sub');
+    btn.textContent = 'Sending...'; btn.disabled = true;
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (res.ok) { form.reset(); document.getElementById('fOk').style.display = 'block'; btn.textContent = 'Sent'; }
+      else { btn.textContent = 'Error - Try Again'; btn.disabled = false; }
+    } catch { btn.textContent = 'Error - Try Again'; btn.disabled = false; }
+  }
+</script>
+</body>
+</html>
